@@ -1,0 +1,104 @@
+/* react-bootstrap bootstrap link */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* google fonts link */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap");
+
+/* styling of the web page body  */
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+/* styling of the todo container  */
+.todoItem-container {
+  background: #fff;
+  box-shadow: 1px 1px 37px #a7a4a4;
+  max-width: 600px;
+  min-height: 600px;
+  margin: 0 auto;
+  padding-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+
+  /* styling the title */
+  .title {
+    font-size: 25px;
+    font-weight: 400;
+    color: #000;
+  }
+  .logout-btn {
+    width: 100px;
+    height: 40px;
+    background: #541554;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid #541554;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin-right: 20px;
+  }
+
+  /* styling of the form */
+  .form-info {
+    display: flex;
+    justify-content: center;
+
+    /* styling of the input field container */
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      align-items: center;
+
+      /* styling of the input field  */
+      .input-fields {
+        label {
+          display: block;
+          font-size: 18px;
+          color: #000;
+          font-weight: 400;
+        }
+        input {
+          width: 400px;
+          height: 37px;
+          border: 2px solid #541554;
+          border-radius: 5px;
+          padding: 0 10px;
+          outline: none;
+          font-size: 17px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    /* styling of the add button  */
+    .add-btn {
+      width: 100px;
+      height: 40px;
+      background: #541554;
+      color: #fff;
+      border-radius: 5px;
+      border: 2px solid #541554;
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+  }
+
+  /* styling of the input and add button container  */
+  .input-add-btn {
+    margin-bottom: 35px;
+    padding: 0 70px;
+  }
+  /* styling of the todo title */
+  .heading {
+    padding: 0 65px;
+    font-weight: 400;
+  }
+}
