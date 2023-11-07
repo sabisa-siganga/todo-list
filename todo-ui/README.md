@@ -10,12 +10,31 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 To get started, clone this repository:
 
-git clone <repository_url>
+git clone https://github.com/sabisa-siganga/todo-list.git
+
+### for backend:
+
+cd todo-list
+
+1. Install the required dependencies:
+
+npm install
+
+2. Run the application:
+
+npm start
+
+The API should now be running at http://localhost:8080.
+
+### frontend:
+
 cd to-do-ui
 
-## Available Scripts
+1. Install the required dependencies:
 
-In the project directory, you can run:
+npm install
+
+2. Run the application:
 
 ### `npm start`
 

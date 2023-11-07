@@ -20,19 +20,32 @@ The following API endpoints are available for interaction:
 
 1. Clone this repository:
 
-git clone <repository_url>
+git clone https://github.com/sabisa-siganga/todo-list.git
 
-cd middleware-app
+cd todo-list
 
 2. Install the required dependencies:
 
 npm install
 
-4. Run the application:
+3. Run the application:
 
 npm start
 
 The API should now be running at http://localhost:8080.
+
+for frontend
+cd to-do-ui
+
+4. Install the required dependencies:
+
+npm install
+
+5. Run the application:
+
+npm start
+
+The API should now be running at http://localhost:3000.
 
 ## Usage
 
