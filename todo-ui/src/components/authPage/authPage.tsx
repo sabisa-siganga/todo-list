@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import "./loginPage.scss";
+import "./authPage.scss";
 
 // props interface
 interface Props {
   onLogin: () => void;
 }
 
-const LoginPage = (props: Props) => {
+const AuthPage = (props: Props) => {
   // states
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [register, setRegister] = useState(false);
 
   // destructing
   const { onLogin } = props;
@@ -18,8 +19,10 @@ const LoginPage = (props: Props) => {
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      const path = register ? "/register-user" : "/login";
+
       //  Send a POST request to the '/login' endpoint with user credentials
-      const response = await fetch("/login", {
+      const response = await fetch(path, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,21 +36,26 @@ const LoginPage = (props: Props) => {
       // Parse the response as JSON
       const results = await response.json();
 
-      // Check if the response includes a token; if not, display an error message
-      if (!results.token) {
-        return alert(results.message);
+      if (results.error) {
+        return alert(results.error);
       }
 
-      // Store the received token in local storage for future use
-      localStorage.setItem("Token", results.token);
+      if (!register) {
+        // Store the received token in local storage for future use
+        localStorage.setItem("Token", results.token);
 
-      // Call the 'onLogin' function to update the login status
-      onLogin();
+        // Call the 'onLogin' function to update the login status
+        onLogin();
+      } else {
+        setPasswordValue("");
+        setRegister(false);
+      }
     } catch (error) {
       // handling error
       console.log(error);
     }
   };
+
   return (
     // login container containing username and password input fileds as well as a login button
     <div className="login-container">
@@ -79,12 +87,39 @@ const LoginPage = (props: Props) => {
         {/*login btn */}
         <div className="login mb-4">
           <button className="login-btn" type="submit">
-            Login
+            {!register ? "Login" : "Register"}
           </button>
+        </div>
+
+        <div>
+          {register && (
+            <div className="auth-btns">
+              Already have an account?{" "}
+              <button
+                type="button"
+                onClick={() => setRegister(false)}
+                className="auth-btn"
+              >
+                Login
+              </button>
+            </div>
+          )}
+          {!register && (
+            <div className="auth-btns">
+              Don't have an account?{" "}
+              <button
+                type="button"
+                onClick={() => setRegister(true)}
+                className="auth-btn"
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default AuthPage;

@@ -42,11 +42,12 @@ This command runs the app in development mode. It will open the application in y
 
 The page will automatically reload when you make edits, and any lint errors will be displayed in the console.
 
-### Login Credentials
+### Register user
 
-You can use the following credentials to log in to the app:
+You need to register by entering username and password then click register
 
-- Username: sabisa@gmail.com
-- Password: sabisa@gmail.com
+### Login
+
+After registering, You need to login using your ysername and password then click login
 
 Feel free to explore and use the app for managing your todos!

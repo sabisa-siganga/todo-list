@@ -8,31 +8,76 @@ const { generateToken } = require("../middlewares/checkToken");
 const todos = {};
 
 // user information
-const userDetails = {
-  username: "sabisa@gmail.com",
-  password: "sabisa@gmail.com",
-};
+const userDetails = [
+  {
+    username: "sabisa@gmail.com",
+    password: "sabisa@gmail.com",
+  },
+];
 
 // creating id
 let nextId = Object.keys(todos).length;
 
+// registering the user
+const registerUser = async (req, res) => {
+  try {
+    // getiing username and password from the request body
+    const { username, password } = req.body;
+
+    // checking if user contains the username
+    const findUser = userDetails.find(
+      (user) => user.username.toLowerCase() === username.toLowerCase()
+    );
+
+    // checking if findUser exists
+    if (findUser) {
+      return res.status(400).json({ error: "User already exists" });
+    }
+
+    const newUser = {
+      username,
+      password,
+    };
+
+    // adding the new user to userDetails array
+    userDetails.push(newUser);
+
+    return res.status(200).json({
+      message: "Successfully registered the user",
+      user: {
+        username: newUser.username,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ error });
+  }
+};
+
 // Logging in
 async function login(req, res) {
   try {
-    if (
-      req.body.username == userDetails.username &&
-      req.body.password == userDetails.password
-    ) {
+    const { username, password } = req.body;
+
+    const findUser = userDetails.find(
+      (user) => user.username.toLowerCase() === username.toLowerCase()
+    );
+
+    if (!findUser) {
+      return res.status(401).json({ error: "User is not found" });
+    }
+
+    if (password == findUser.password) {
       let jwtToken = generateToken({
         username: userDetails.username,
       });
       res.status(200).json({ token: jwtToken });
     } else {
-      res.status(401).json({ message: "User is not authenticated" });
+      res.status(401).json({ error: "User is not authenticated" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
@@ -188,4 +233,5 @@ module.exports = {
   fetchTodos,
   editTodo,
   deleteTodo,
+  registerUser,
 };

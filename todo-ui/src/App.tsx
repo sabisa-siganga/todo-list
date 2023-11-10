@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "./App.scss";
 import TodoItem from "./components/to-do/todoItem";
-import LoginPage from "./components/loginPage/loginPage";
 import { checkIsLogin, returnBearer } from "./utils/utils";
 import { Todo } from "./interfaces/interfaces";
+import AuthPage from "./components/authPage/authPage";
 
 // Creating a todo app that allows the use to add/read,update and delete the todo item(s) and mark it as completed
 
@@ -168,7 +168,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <LoginPage onLogin={onUserLogin} />
+        <AuthPage onLogin={onUserLogin} />
       )}
     </>
   );

@@ -1,9 +1,23 @@
 const handleUserEmail = async (req, res, next) => {
   try {
-    // Checking if the user's email ends with the string '@gmail.com)'
-    const userEmail = req.body.username;
+    const { username, password } = req.body;
 
-    if (!userEmail || !userEmail.endsWith("@gmail.com")) {
+    // checking if username exists
+    if (!username) {
+      return res.status(403).json({
+        error: "Email address required",
+      });
+    }
+
+    // checking if password exists
+    if (!password) {
+      return res.status(403).json({
+        error: "password required",
+      });
+    }
+
+    // Checking if the user's email ends with the string '@gmail.com)'
+    if (!username.endsWith("@gmail.com")) {
       return res.status(403).json({
         error: "Access denied. Only @gmail.com email address are allowed.",
       });
